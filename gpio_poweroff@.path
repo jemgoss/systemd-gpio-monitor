@@ -5,4 +5,4 @@ After=gpio_poweroff_setup@%i.service
 [Path]
 PathModified=/sys/class/gpio/gpio%i/value
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
