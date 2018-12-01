@@ -1,0 +1,8 @@
+[Unit]
+Description=GPIO pin poweroff monitor
+Requires=gpio_poweroff_setup@%i.service
+After=gpio_poweroff_setup@%i.service
+[Path]
+PathModified=/sys/class/gpio/gpio%i/value
+[Install]
+WantedBy=default.target

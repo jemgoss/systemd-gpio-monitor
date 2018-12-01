@@ -1,0 +1,8 @@
+[Unit]
+Description=GPIO pin poweroff activation
+StartLimitInterval=5
+StartLimitBurst=1
+[Service]
+Type=oneshot
+#ExecStart=/usr/bin/echo systemctl --force poweroff
+ExecStart=/usr/bin/systemctl --force poweroff

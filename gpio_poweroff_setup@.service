@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup GPIO pin %i to listen to poweroff requests
+# Activated as a requirement, so stop when unneeded
+StopWhenUnneeded=yes
+# Need this to get around circular dependency with paths.target
+DefaultDependencies=no
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sh -c "echo %i > /sys/class/gpio/export; echo high > /sys/class/gpio/gpio%i/direction; echo falling > /sys/class/gpio/gpio%i/edge"
+ExecStop=/usr/bin/sh -c "echo %i > /sys/class/gpio/unexport"
