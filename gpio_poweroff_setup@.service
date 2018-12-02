@@ -7,5 +7,5 @@ DefaultDependencies=no
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/sh -c "echo %i > /sys/class/gpio/export; echo high > /sys/class/gpio/gpio%i/direction; echo falling > /sys/class/gpio/gpio%i/edge"
-ExecStop=/usr/bin/sh -c "echo %i > /sys/class/gpio/unexport"
+ExecStart=/usr/bin/sh -c "/usr/local/bin/gpio-admin export %i pullup; echo falling > /sys/class/gpio/gpio%i/edge"
+ExecStop=/usr/local/bin/gpio-admin unexport %i
