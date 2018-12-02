@@ -9,7 +9,9 @@ It works by setting up an input pin with internal pullup, assigning a falling ed
 
 This can easily be adpated to perform other tasks when a GPIO pin change is detected.
 
-Improvements are certainly welcome.
+Dependencies:
+
+Since I couldn't find a way to set an internal pullup directly through sysfs, I've reverted to using <code>gpio-admin</code>, a program from [quick2wire](https://github.com/Jemgoss/quick2wire-gpio-admin). 
 
 Usage:
 
@@ -20,10 +22,12 @@ Usage:
 >       # systemctl enable --now gpio_poweroff@21.path
 
 * 26 pin header:
->        # systemctl enable --now gpio_poweroff@7.path
+>       # systemctl enable --now gpio_poweroff@7.path
 
 You may want to first test the action without actually shutting down:
 
 1. Edit <code>gpio_poweroff@.service</code> to echo the poweroff command.
 2. Use the correct pin number for the activation service:
 >       # journalctl -f -u gpio_poweroff@7.service
+
+Improvements are certainly welcome.
