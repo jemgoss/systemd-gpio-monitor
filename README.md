@@ -17,7 +17,7 @@ Usage:
 
 1. Copy all systemd unit files to /etc/systemd/system.
 
-2. Enable and start monitoring:<br>
+2. Enable and start monitoring:
 * 40 pin header:
 >       # systemctl enable --now gpio_poweroff@21.path
 
@@ -27,7 +27,11 @@ Usage:
 You may want to first test the action without actually shutting down:
 
 1. Edit <code>gpio_poweroff@.service</code> to echo the poweroff command.
-2. Use the correct pin number for the activation service:
+2. Monitor the activation service:
+* 40 pin header:
+>       # journalctl -f -u gpio_poweroff@21.service
+
+* 26 pin header:
 >       # journalctl -f -u gpio_poweroff@7.service
 
 Improvements are certainly welcome.
